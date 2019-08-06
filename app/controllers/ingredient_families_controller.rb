@@ -1,6 +1,6 @@
 class IngredientFamiliesController < ApplicationController
   def index
-    @ingredient_families = IngredientFamily.all
+    @ingredient_families = IngredientFamily.default_order
   end
 
   def show
