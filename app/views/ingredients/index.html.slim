@@ -3,7 +3,7 @@ html
       title Ingredients  
   body
     h1 List of Ingredients:
-    
+
     -@ingredients.each do |ingredient|
       h2 =ingredient.name
       p =link_to 'Show', ingredient_path(ingredient)
