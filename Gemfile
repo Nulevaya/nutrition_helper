@@ -11,6 +11,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'slim-rails'
+gem 'simple_form'
 
 gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.1.0', require: false

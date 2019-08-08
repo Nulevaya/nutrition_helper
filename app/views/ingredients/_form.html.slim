@@ -1,0 +1,37 @@
+= simple_form_for @ingredient,
+  html: { class: 'form-horizontal inputs-sm input-form' } do |f|
+
+  .input-group.mb-3
+    span class='input-group-text' Название
+    = f.input :name, required: true, label: false, input_html: { class: 'form-control' }
+
+  .input-group.mb-3
+    span class='input-group-text' Калорийность
+    = f.input :calorific_value, label: false, required: true, input_html: { class: 'form-control' }
+
+  .input-group.mb-3
+    span class='input-group-text' Белки
+    = f.input :proteins, label: false, required: true, input_html: { class: 'form-control' }
+
+  .input-group.mb-3
+    span class='input-group-text' Жиры
+    = f.input :fats, label: false, required: true, input_html: { class: 'form-control' }
+
+  .input-group.mb-3
+    span class='input-group-text' Углеводы
+    = f.input :carbohydrates, label: false, required: true, input_html: { class: 'form-control' }
+
+  .input-group.mb-3
+    span class='input-group-text' Семейство ингредиентов
+    = f.association :ingredient_family, label: false, input_html: { class: 'custom-select' }
+
+  .row
+    .col-sm-offset-3.col-sm-9
+      = f.button :submit, class: 'btn-primary', value: 'Сохранить'
+      = link_to 'Отменить', ingredients_path, class: 'btn btn-primary ml-2'
+
+      - if @ingredient.persisted?
+        = link_to 'Delete', @ingredient,
+          method: :delete,
+          data: { confirm: "Точно хотите удалить ингредиент?" },
+          class: "btn btn-danger ml-2"
