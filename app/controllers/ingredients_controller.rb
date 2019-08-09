@@ -6,7 +6,8 @@ class IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
 
-    if @ingredient.save
+    if @ingredient.valid?
+      @ingredient.save
       redirect_to @ingredient
     else
       render action: 'new'
@@ -28,7 +29,7 @@ class IngredientsController < ApplicationController
   def update
     @ingredient = Ingredient.find(params[:id])
 
-    if @ingredient.update(article_params)
+    if @ingredient.update(ingredient_params)
       redirect_to @ingredient
     else
       render action: 'edit'
@@ -45,7 +46,7 @@ class IngredientsController < ApplicationController
 
   private
 
-  def article_params
-    params.require(:ingredient).permit(:name, :calorific_value, :proteins, :fats, :carbohydrates)
+  def ingredient_params
+    params.require(:ingredient).permit(:name, :calorific_value, :proteins, :fats, :carbohydrates, :ingredient_family_id)
   end
 end

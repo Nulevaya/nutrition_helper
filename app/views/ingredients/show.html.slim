@@ -1,7 +1,10 @@
 head
 body
-  h1 =@ingredient.name
-  p =@ingredient.calorific_value
-  p =@ingredient.proteins
-  p =@ingredient.fats
-  p =@ingredient.carbohydrates
+  .card.mb-3
+    img src='https://cs10.pikabu.ru/post_img/2019/02/27/7/1551264625127415014.jpg'
+    .card-body
+      h5 class="card-title" =@ingredient.name
+      p.card-text ="Калорийность #{@ingredient.calorific_value} ккал"
+      p.card-text ="Белков #{@ingredient.proteins}"
+      p.card-text ="Жиров #{@ingredient.fats}"
+      p.card-text ="Углеводов #{@ingredient.carbohydrates}"
