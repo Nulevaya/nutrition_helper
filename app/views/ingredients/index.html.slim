@@ -1,8 +1,8 @@
 html
   head
-    title Ingredients
+    title Ингредиенты
   body
-  h1 List of Ingredients:
+  h1 Список ингредиентов:
   table.table.table-hover 
     thead.thead-dark
       tr
@@ -18,12 +18,12 @@ html
     -@ingredients.each_with_index do |ingredient, i|
       tbody
         tr
-          th scope='row' #{i+1}
+          th #{i+1}
           th =ingredient.name
           th =ingredient.calorific_value
           th =ingredient.proteins
           th =ingredient.fats
           th =ingredient.carbohydrates
-          th =link_to 'Show', ingredient_path(ingredient)
-          th Edit
-          th Delete
+          th =link_to 'Показать', ingredient_path(ingredient)
+          th Редактировать
+          th Удалить
