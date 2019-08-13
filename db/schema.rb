@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_192617) do
+ActiveRecord::Schema.define(version: 2019_08_13_134407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,23 @@ ActiveRecord::Schema.define(version: 2019_08_12_192617) do
     t.index ["ingredient_family_id"], name: "index_ingredients_on_ingredient_family_id"
   end
 
+  create_table "meal_ingredients", force: :cascade do |t|
+    t.integer "meal_id", null: false
+    t.integer "ingredient_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ingredient_id"], name: "index_meal_ingredients_on_ingredient_id"
+    t.index ["meal_id"], name: "index_meal_ingredients_on_meal_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_meals_on_name"
+  end
+
   create_table "product_ingredients", force: :cascade do |t|
     t.integer "product_id", null: false
     t.integer "ingredient_id", null: false
@@ -49,6 +66,8 @@ ActiveRecord::Schema.define(version: 2019_08_12_192617) do
   end
 
   add_foreign_key "ingredients", "ingredient_families"
+  add_foreign_key "meal_ingredients", "ingredients"
+  add_foreign_key "meal_ingredients", "meals"
   add_foreign_key "product_ingredients", "ingredients"
   add_foreign_key "product_ingredients", "products"
 end
