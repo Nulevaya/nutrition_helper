@@ -1,9 +1,29 @@
 html
   head
-      title Ingredients  
+    title Ингредиенты
   body
-    h1 List of Ingredients:
-
-    -@ingredients.each do |ingredient|
-      h2 =ingredient.name
-      p =link_to 'Show', ingredient_path(ingredient)
+  h1 Список ингредиентов:
+  table.table.table-hover 
+    thead.thead-dark
+      tr
+        th #
+        th Название
+        th Калорийность
+        th Белков
+        th Жиров 
+        th Углеводов
+        th
+        th
+        th
+    -@ingredients.each_with_index do |ingredient, i|
+      tbody
+        tr
+          th #{i+1}
+          th =ingredient.name
+          th =ingredient.calorific_value
+          th =ingredient.proteins
+          th =ingredient.fats
+          th =ingredient.carbohydrates
+          th =link_to 'Показать', ingredient_path(ingredient)
+          th Редактировать
+          th Удалить
