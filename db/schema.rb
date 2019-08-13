@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_134407) do
+ActiveRecord::Schema.define(version: 2019_08_13_155714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ingredient_families", force: :cascade do |t|
     t.string "name"
@@ -65,9 +71,29 @@ ActiveRecord::Schema.define(version: 2019_08_13_134407) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "shop_products", force: :cascade do |t|
+    t.integer "shop_id"
+    t.integer "product_id"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["price"], name: "index_shop_products_on_price"
+    t.index ["product_id"], name: "index_shop_products_on_product_id"
+    t.index ["shop_id"], name: "index_shop_products_on_shop_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name"
+    t.integer "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "ingredients", "ingredient_families"
   add_foreign_key "meal_ingredients", "ingredients"
   add_foreign_key "meal_ingredients", "meals"
   add_foreign_key "product_ingredients", "ingredients"
   add_foreign_key "product_ingredients", "products"
+  add_foreign_key "shop_products", "products"
+  add_foreign_key "shop_products", "shops"
 end
