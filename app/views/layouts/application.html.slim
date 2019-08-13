@@ -12,6 +12,16 @@ html lang="en"
     = javascript_include_tag "application"
 
   body
+    .navbar.navbar-expand-lg.navbar-light.bg-light
+      .navbar-brand 'Тут будет hometab'
+      .collapse.navbar-collapse
+        .navbar-nav.nav-item.nav-link =link_to 'Ингредиенты', ingredients_path 
+        .navbar-nav.nav-item.nav-link =link_to 'Семейства ингредиентов', ingredient_families_path
+      form.form-inline
+        input.form-control.mr-sm-2
+        button.btn.btn-outline-success.my-2.my-sm-0 Поиск
+      
     .container-fluid.mt-3
       .row
         = yield
+    
